@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+	<script src="/javascripts/angularApp.js"></script>
+	<style> .glyphicon-thumbs-up {cursor:pointer} </style>
+  </head>
+  
+  <body ng-app="understandingBlock">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<ui-view></ui-view> <!-- Dico al controller dove posizionare il template -->
+			</div>
+		</div>
+		<script type="text/ng-template" id="/home.html"> 
+			<div class="page-header"> <h1><%= title %></h1> </div>
+			<form ng-submit="newRequest()" style="margin-top:30px;">
+				<h3>Fai una nuova richiesta</h3>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="IF" ng-model="_if"/>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="THEN" ng-model="_then"/>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="ELSE" ng-model="_else"/>
+				</div>
+				<div class="form-group">
+					Repeate: <input type="checkbox" ng-model="_repeat" ng-true-value="'YES'" ng-false-value="'NO'">
+					<button type="submit" class="btn btn-primary">OK</button>
+				</div>
+				<HR>
+			</form>
+			<div style="margin-top:30px;">
+				<button type="submit" ng-click="deleteAll()" class="btn btn-primary">Delete All</button>
+				<button type="submit" ng-click="getConfig()" class="btn btn-primary">Get Config</button>
+				<BR> <HR>
+			</div>
+			<div ng-repeat="request in requests">
+				Timestamp: {{request.timestamp}} <BR>
+				Trigger: {{parseTrigger(request.trigger)}} <BR>
+				Action: {{parseAction(request.action)}} <BR>
+				Else: {{parseAction(request.elseAction)}} <BR>
+				Repeate: {{request.repeat}} <BR>
+				Response: {{parseResponse(request.response)}} <BR>
+				<BR>
+				<button type="submit" ng-click="cancel($index)" class="btn btn-primary">Delete</button>
+				<BR> <HR>
+			</div>
+		</script>
+	</body>
+</html>
