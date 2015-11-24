@@ -122,9 +122,12 @@ function($scope, requests){
 		
 		var _then = $scope._then;
 		
-		if($scope._if) var _if = $scope._if;
+		if($scope._if){
+			var _if = $scope._if;
+			if($scope._repeat) var _repeat = $scope._repeat;
+			else var _repeat = "NO";
+		} 
 		if($scope._else && _if) var _else = $scope._else;
-		if($scope._repeat && _if) var _repeat = $scope._repeat;
 		
 		if(_if) var richiesta = "if=" + _if + "&then=" + _then;
 		else var richiesta = "then=" + _then;
