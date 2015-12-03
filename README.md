@@ -13,3 +13,4 @@ This module understand the request from application client and produce a json fi
 It requires Node.js and Mongo DB installed.
 Install the sistem with command npm install.
 Start Task Coordinator and Discovery Block.
+Run the system with command "npm start".
