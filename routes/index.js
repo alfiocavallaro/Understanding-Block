@@ -73,8 +73,6 @@ router.post('/requests', function(req, res, next){
 	httpReq.end();
 });
 
-//saveInMongoDB(request,"RISPOSTA RICEVUTA");
-//res.send(JSON.stringify(request));
 
 function saveInMongoDB(request, response){
 	
